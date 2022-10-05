@@ -5,7 +5,7 @@ This project is a sincere attempt by MSTC, DA-IICT to encourage Open Source cont
 
 ## Requirements
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
+For development, you will need Node.js, Expressjs, MongodB, installed in your environement.
 
 ### Node
 - #### Node installation on Windows
@@ -36,34 +36,27 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
     $ npm install npm -g
 
 ###
-### Yarn installation
-  After installing node, this project will need yarn too, so just run the following command.
 
-      $ npm install -g yarn
+### ExpressJS installation
+
+    $ npm install express
+    
+ You can find more information about the installation on the [official Express website](https://expressjs.com/en/starter/installing.html)
+
+### MongodB
+
+    $ npm install mongodb
+
+ You can find more information about the installation on the [official MongodB website](https://www.mongodb.com/languages/javascript/mongodb-and-npm-tutorial)
+
 
 ---
 
-## Install
-
-    $ git clone https://github.com/YOUR_USERNAME/PROJECT_TITLE
-    $ cd PROJECT_TITLE
-    $ yarn install
-
-## Configure app
-
-Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
-
-- A setting;
-- Another setting;
-- One more setting;
-
 ## Running the project
 
-    $ yarn start
+   $ npm install
 
 ## Simple build for production
 
-    $ yarn build
-
-
+    $ npm server.js
 
