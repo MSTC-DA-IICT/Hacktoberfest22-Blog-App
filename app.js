@@ -2,13 +2,16 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const bodyParser = require("body-parser")
+const cloudinary = require("cloudinary").v2;
+
 var logger = require('morgan');
 var app = express();
 
 app.use(express.urlencoded({ extended: false }));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+app.use(bodyParser.json({limit: '50mb'}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -26,6 +29,8 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.use("/public", express.static(path.join(__dirname, "./public/images")));
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -36,6 +41,13 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//Cloudinary config
+cloudinary.config({ 
+  cloud_name: 'dzpil1t0d', 
+  api_key: '335635739983252', 
+  api_secret: 'NfV1mBOaCx-0UhCKxUFt5Oma9FM' 
 });
 
 app.listen(4000,() => console.log("server is on!!!"))
