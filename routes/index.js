@@ -6,7 +6,6 @@ const {v4: uuidv4} = require("uuid")
 const path = require("path")
 const fs = require("fs")
 const cloudinary = require("cloudinary").v2;
-
 router.use(sanitizer());
 mongoose
   .connect(
@@ -24,7 +23,9 @@ const blogSchema = new mongoose.Schema({
 });
 
 let Blog = mongoose.model("Blog", blogSchema);
-
+router.get('/', (req, res) => {
+  res.render('index', {foo: 'FOO', delimiter: '?'});
+});
 
 //Images are posted onto cloudinary and image URL's are stored into the database
 //Created the post request for creating the blog

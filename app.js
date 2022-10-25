@@ -7,12 +7,14 @@ const cloudinary = require("cloudinary").v2;
 
 var logger = require('morgan');
 var app = express();
+// const bodyParser = require("body-parser");
 
-app.use(express.urlencoded({ extended: false }));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 app.use(bodyParser.json({limit: '50mb'}));
-
+app.set('view engine','ejs')
+app.engine('html', require('ejs').renderFile);
+app.use(express.urlencoded({ extended: false }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -31,7 +33,6 @@ app.use(function(req, res, next) {
 });
 
 app.use("/public", express.static(path.join(__dirname, "./public/images")));
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
